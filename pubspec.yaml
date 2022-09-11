@@ -1,0 +1,28 @@
+name: login
+description: A new Flutter project.
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.0
+  url_launcher: ^5.0.2
+  fluttertoast: ^3.0.3
+  math_expressions: ^1.0.0
+  clipboard_manager:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.png
+    - assets/alucard.jpg
+  fonts:
+      - family: Nunito
+        fonts:
+          - asset: assets/Nunito.ttf
