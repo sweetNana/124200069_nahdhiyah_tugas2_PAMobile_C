@@ -28,7 +28,7 @@ class KelompokPage extends StatelessWidget {
     final lorem = Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        'Nahdhiyah \n Haikel \n Henny',
+        '124200069 Nahdhiyah \n124200062 Haikel Radipta K \n124200004 Nugraheni Nur Wijayanti',
         style: TextStyle(fontSize: 16.0, color: Colors.white),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login/datakelompok.dart';
 import 'package:login/home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -26,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
       //initialValue: 'alucard@gmail.com',
       decoration: InputDecoration(
         hintText: 'Username',
+        label: Text("Username"),
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -37,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       obscureText: true,
       decoration: InputDecoration(
         hintText: 'Password',
+        label: Text("Password"),
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -49,21 +50,26 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed(HomePage.tag);
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return HomePage(
+              // Username: username,
+              // Password: password,
+            );
+          }));
         },
         padding: EdgeInsets.all(12),
-        color: Colors.lightBlueAccent,
+        color: Colors.blueGrey,
         child: Text('Log In', style: TextStyle(color: Colors.white)),
       ),
     );
 
     final forgotLabel = FlatButton(
       child: Text(
-        'Data Kelompok',
+        'Forget password?',
         style: TextStyle(color: Colors.black54),
       ),
       onPressed: () {
-        Navigator.of(context).pushNamed(KelompokPage.tag);
+        // Navigator.of(context).pushNamed(KelompokPage.tag);
       },
     );
 

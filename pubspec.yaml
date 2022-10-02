@@ -22,6 +22,12 @@ flutter:
   assets:
     - assets/logo.png
     - assets/alucard.jpg
+    - images/hen.png
+    - images/hai.png
+    - images/nah.png
+    - images/ni.png
+    - images/kel.jpeg
+    - images/yah.png
   fonts:
       - family: Nunito
         fonts:

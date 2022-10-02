@@ -1,437 +1,153 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:math_expressions/math_expressions.dart';
-import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'daftar_anggota.dart';
+import 'daftar_hobby.dart';
+import 'stopwatch.dart';
+import 'login_page.dart';
 
-String strInput="";
-final txtControllerInput = TextEditingController();
-final txtControllerResult = TextEditingController();
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+      // title: 'Home Page',
+      // home: HomePage(),
+      // theme: ThemeData(
+      //     appBarTheme: AppBarTheme(
+      //         color: Colors.blueGrey
+      //     )
+      // ),
+    );
+  }
+}
 
 class HomePage extends StatefulWidget {
   @override
-  static String tag = 'home-page';
-  State createState() => new OverviewState();
+  static String tag = 'home-tag';
+  _HomePageState createState() => _HomePageState();
 }
 
-class OverviewState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    txtControllerInput.addListener((){});
-    txtControllerResult.addListener((){});
+class _HomePageState extends State<HomePage> {
+  int _selectedNavbar = 0;
+
+  void _changeSelectedNavBar(int index) {
+    setState(() {
+      _selectedNavbar = index;
+    });
   }
 
   @override
-  void dispose() {
-    // Clean up the controller when the Widget is removed from the Widget tree
-    txtControllerInput.dispose();
-    txtControllerResult.dispose();
-    super.dispose();
-  }
-
-  //First Row of keys
-  Row buttonRowContainer_1() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "7";
-          }),
-          child: new Text(
-              "7",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "8";
-          }),
-          child: new Text(
-              "8",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "9";
-          }),
-          child: new Text(
-              "9",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "/";
-          }),
-          child: new Text(
-              "/",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-      ],
-    );
-  }
-
-  //Second Row of keys
-  Row buttonRowContainer_2() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "4";
-          }),
-          child: new Text(
-              "4",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "5";
-          }),
-          child: new Text(
-              "5",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "6";
-          }),
-          child: new Text(
-              "6",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "*";
-          }),
-          child: new Text(
-              "x",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-      ],
-    );
-  }
-
-  //Third Row of keys
-  Row buttonRowContainer_3() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "1";
-          }),
-          child: new Text(
-              "1",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "2";
-          }),
-          child: new Text(
-              "2",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "3";
-          }),
-          child: new Text(
-              "3",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "-";
-          }),
-          child: new Text(
-              "-",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-      ],
-    );
-  }
-
-  //Forth Row of keys
-  Row buttonRowContainer_4() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + ".";
-          }),
-          child: new Text(
-              ".",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "0";
-          }),
-          child: new Text(
-              "0",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text=(txtControllerInput.text.length>0)?(txtControllerInput.text.substring(0, txtControllerInput.text.length-1)):"";
-          }),
-          child: new Icon(
-              Icons.backspace,
-              size: 35,
-              color: Colors.blueGrey
-          ),
-        ),
-
-        new FlatButton(
-          padding: const EdgeInsets.all(18.0),
-          textColor: Colors.blueGrey,
-          color: Colors.white,
-          onPressed: () => setState(() {
-            txtControllerInput.text = txtControllerInput.text + "+";
-          }),
-          child: new Text(
-              "+",
-              style: TextStyle(fontSize: 35)
-          ),
-        ),
-      ],
-    );
-  }
-
-  Container keypadButtonRow(){
-    return Container(
-      color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          buttonRowContainer_1(),
-          buttonRowContainer_2(),
-          buttonRowContainer_3(),
-          buttonRowContainer_4(),
-        ],
-      ),
-    );
-  }
-
-  Container buttonValue(){
-    return Container(
-      color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          new ButtonTheme(
-            minWidth: double.infinity,
-            height: 50,
-            child: FlatButton(
-              color: Colors.white,
-              textColor: Colors.blueGrey,
-              onPressed: () {
-                //Calculate value
-                //Parse expression:
-                Parser p = new Parser();
-                // Bind variables:
-                ContextModel cm = new ContextModel();
-                Expression exp = p.parse(txtControllerInput.text);
-                setState(() {
-                  txtControllerResult.text=exp.evaluate(EvaluationType.REAL, cm).toString();
-                });
-              },
-              child: Text('=',style: TextStyle(fontSize: 55),),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  //This returns a Column for the keypad
-  Column keypadContainer() {
-    return Column(
-      children: <Widget>[
-        keypadButtonRow(),
-        buttonValue()
-      ],
-    );
-  }
-
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0),
-          child: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(40.0),
-              child: Theme(
-                data: Theme.of(context).copyWith(accentColor: Color.fromARGB(255, 253, 253, 253)),
-                child: Container(
-                    height: 60,
-                    alignment: Alignment.bottomLeft,
-                    padding: EdgeInsets.fromLTRB(22.0, 0, 0, 18.0),
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            'Calculator',//Appbar title
-                            style: TextStyle(
-                                fontSize: 38.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black
-                            ),
-                          ),
+    final _listPage = <Widget>[
+      ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          ElevatedButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return DaftarAnggota();
+              }));
+            },
+            child: Text('Daftar Anggota'),
+          ),
 
-                          IconButton(
-                            icon: Icon(Icons.code),
-                            tooltip: '',
-                            color: Colors.blueGrey,
-                            //onPressed: ()=> ,
-                          )
-                        ],
-                      ),
-                    )
-                ),
+          ElevatedButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return DaftarHobby();
+              }));
+            },
+            child: Text('Daftar Hobi'),
+          ),
+          ElevatedButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return StopwatchPage();
+              }));
+            },
+            child: Text('Stopwatch'),
+          ),
+          ElevatedButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return LoginPage();
+              }));
+            },
+            child: Text('Log out'),
+          )
+        ],
+      ),
+      ListView(
+        padding:
+        const EdgeInsets.all(8),
+        children: [
+          Container(
+            height: 500,
+            color: Colors.blueGrey.withOpacity(0.6),
+            child: const Center(
+              child: Text(
+                "Aplikasi ini merupakan aplikasi yang dibuat untuk memenuhi penilaian\n"
+                    "Tugas 2 pada mata kuliah Pemrograman Aplikasi Mobile.\n"
+                    "Pengguna dapat mengakses aplikasi ini dengan langkah-langkah sebagai berikut:\n"
+                    "Step 1. Anda bisa Login terlebih dahulu untuk mengakses\n"
+                    "Step 2. Setelah itu Anda akan diarahkan ke Homepage.\n"
+                    "Di halaman ini anda bisa memilih 4 menu yang tersedia.\n"
+                    "Selain itu, Anda juga dapat langsung menuju Homepage dengan\n"
+                    "menggunakan Home button yang ada di Bottom Navigation Bar\n"
+                    "Anda juga bisa menuju halaman bantuan ini melalui button Help\n"
+                    "Step 3. Jika Anda ke menu Daftar Anggota, Anda bisa meliat daftar nama anggota kami\n"
+                    "Step 4. Jika Anda ke menu Stopwatch, akan ada Stopwatch yang bisa Anda gunakan\n"
+                    "Step 5. Jika Anda ke menu Daftar Hobby, Anda bisa melihat daftar hobi anggota kami\n"
+                    "Step 6. Jika Anda menekan Logout, maka Anda akan kembali ke Login Page.\n"
+                ,
+                style: TextStyle(fontSize: 14.0, color: Colors.black),
               ),
             ),
+          )
+        ],
+      )
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Page"),
+      ),
+      body: Center(
+        child: _listPage[_selectedNavbar],
+        // Text("Tab Index yang aktif : $_selectedNavbar",
+        // style: TextStyle(fontSize: 16)),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Beranda'),
           ),
-        ),
-        body: Container(
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                new Padding(padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: new TextField(
-                      decoration: new InputDecoration.collapsed(hintText: ""),
-                      style: TextStyle(fontSize: 30,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.right,
-                      controller: txtControllerInput,
-                      onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
-                    )
-                ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.assignment),
+          //   title: Text('Pesanan'),
+          // ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.mail),
+          //   title: Text('Inbox'),
+          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.help),
+            title: Text('Help'),
 
-                new Padding(padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: TextField(
-                      decoration: new InputDecoration.collapsed(hintText: "0", fillColor: Colors.blueGrey,),
-                      textInputAction: TextInputAction.none,
-                      keyboardType: TextInputType.number,
-                      style: TextStyle(fontSize: 60,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.blueGrey),
-                      textAlign: TextAlign.right,
-                      controller: txtControllerResult,
-                      onTap: (){
-                        FocusScope.of(context).requestFocus(new FocusNode());
-                        ClipboardManager.copyToClipBoard(txtControllerResult.text).then((result) {
-                          Fluttertoast.showToast(
-                              msg: "Value copied to clipboard!",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              timeInSecForIos: 1,
-                              backgroundColor: Colors.blueAccent,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );
-                        });
-                      },
-                    )
-                ),
-
-                new Align(alignment: Alignment.centerRight,
-                    child: Padding(padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: new IconButton(icon: Icon(Icons.delete, size: 40,),
-                            color: Colors.blueGrey,
-                            onPressed: (){
-                              setState(() {
-                                txtControllerInput.text = "";
-                                txtControllerResult.text = "";
-                              });
-                            }
-                        )
-                    )
-                ),
-
-                Padding(padding: EdgeInsets.all(20)),
-
-                keypadContainer(),
-
-              ],
-            )
-        )
+          ),
+        ],
+        currentIndex: _selectedNavbar,
+        selectedItemColor: Colors.blueGrey,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        onTap: _changeSelectedNavBar,
+      ),
     );
   }
 }

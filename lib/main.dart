@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:login/datakelompok.dart';
 import 'login_page.dart';
 import 'home_page.dart';
+import 'stopwatch.dart';
+import 'daftar_anggota.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +12,8 @@ class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     LoginPage.tag: (context) => LoginPage(),
     HomePage.tag: (context) => HomePage(),
-    KelompokPage.tag: (context) => KelompokPage()
+    StopwatchPage.tag: (context) => StopwatchPage(),
+    DaftarAnggota.tag: (context) => DaftarAnggota()
   };
 
   @override
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'KerKom',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+        primarySwatch: Colors.blueGrey,
         fontFamily: 'Nunito',
       ),
       home: LoginPage(),
